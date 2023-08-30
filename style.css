@@ -1,0 +1,80 @@
+*{
+    font-family: 'Nunito Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 10%;
+}
+
+
+.home-page{
+    background-color: hsl(0, 0%, 98%);
+    padding: 1rem 10%;
+}
+.search-filter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input{
+    background: white;
+    position: relative;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 12px;
+    border-radius: 10px;
+}
+.input input{
+    border: none;
+    outline: none;
+    width: 400px;
+   
+}
+
+.search-filter select{
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.containers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap:wrap;
+    margin-top: 2rem;
+}
+
+.container{
+    background-color: white;
+    height: 23rem;
+    width: 18rem;
+    margin: 22px 0px;
+    text-align: left;
+}
+.container img{
+    height: 12rem;
+    width: 100%;
+}
+
+.details{
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+}
+.details h2{
+    width: 100%;
+}
