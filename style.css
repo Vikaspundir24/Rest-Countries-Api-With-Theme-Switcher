@@ -14,9 +14,14 @@
 }
 
 
+
 .home-page{
     background-color: hsl(0, 0%, 98%);
     padding: 1rem 10%;
+    font-size: 14px;
+}
+.home-page img{
+    border-radius: 12px 12px 0px 0px;
 }
 .search-filter{
     display: flex;
@@ -40,12 +45,26 @@
     width: 400px;
    
 }
-
+.input-dark-mode{
+    color: white;
+    background-color: hsl(209, 23%, 22%);
+}
+.input-bar-dark{
+    color: white;
+    background-color: hsl(209, 23%, 22%);
+}
+.input-bar-dark::placeholder{
+    color: white;
+}
 .search-filter select{
     padding: 1rem 2rem;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     outline: none;
+}
+.select-menu-dark{
+    color: white;
+    background-color: hsl(209, 23%, 22%);
 }
 
 .containers{
@@ -62,6 +81,11 @@
     width: 18rem;
     margin: 22px 0px;
     text-align: left;
+    border-radius: 12px;
+    transition: 0.4s;
+}
+.container:hover{
+    transform: scale(1.05);
 }
 .container img{
     height: 12rem;
@@ -77,4 +101,68 @@
 }
 .details h2{
     width: 100%;
+    margin: 5px 0px;
 }
+.details p{
+   margin: 5px 0px;
+}
+/*Detail page  */
+
+.hide{
+    display: none;
+}
+
+.detail-page{
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 98%);
+    padding: 1rem 10%;
+    font-size: 16px;
+    height: 100vh;
+}
+
+.country-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.small-details{
+    display: flex;
+    justify-content: space-between;
+    gap: 7rem;
+}
+.back{
+    padding: 2rem 0px;
+}
+.back-btn{
+    background-color: white;
+    border: 0px;
+    outline: 0px;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 0.5rem 2rem ;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition: 0.4s;
+}
+.back-btn:hover{
+    transform: scale(1.1);
+}
+
+.fa-arrow-left{
+    margin-right: 0.5rem;
+}
+span{
+    font-weight: 800;
+}
+
+.left-flag img{
+    width: 30vw;
+}
+.right-details h1{
+    margin: 2rem 0px;
+}
+
+.small-detail{
+    padding: 5px 0px;
+}
+
