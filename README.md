@@ -6,7 +6,7 @@ This project is a Frontend Mentor challenge, where we have to integrate with RES
 
 ## Live Link
 
-[Click Here ➡️]()
+[Click Here ➡️](https://vikaspundir24.github.io/Rest-Countries-Api-With-Theme-Switcher/)
 
 # About Project
 
@@ -23,7 +23,6 @@ This project is a Frontend Mentor challenge, where we have to integrate with RES
 * Click through to the border countries on the detail page
 * Toggle the color scheme between light and dark mode
 
-### Project Demo
 
  
  
