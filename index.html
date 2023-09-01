@@ -26,21 +26,21 @@
         <div class="search-filter">
             <div class="input">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="input-bar" type="text" placeholder="Search for a country...">
+                <input onkeypress="fetchSearchData(event)" class="input-bar" type="text" placeholder="Search for a country...">
             </div>
-            <select name="" class="select-menu" id="">
-                <option value="">Filter by Region</option>
-                <option value="">Africa</option>
-                <option value="">America</option>
-                <option value="">Asia</option>
-                <option value="">Europe</option>
-                <option value="">Oceania</option>
+            <select name="" onChange="fetchRegionData(this)" class="select-menu" id="">
+                <option class="option-value" value="all">Filter by Region</option>
+                <option class="option-value"  value="africa">Africa</option>
+                <option class="option-value" value="america">America</option>
+                <option class="option-value" value="asia">Asia</option>
+                <option class="option-value" value="europe">Europe</option>
+                <option class="option-value" value="oceania">Oceania</option>
             </select>
         </div>
         <div class="containers">
         </div>
     </div>
-    <div class="detail-page hide">
+    <div class="detail-page">
 
     </div>
 
