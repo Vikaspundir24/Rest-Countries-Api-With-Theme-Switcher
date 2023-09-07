@@ -3,10 +3,13 @@ const detailPage = document.querySelector(".detail-page");
 const homePage = document.querySelector(".home-page");
 const modeBtn = document.querySelector(".mode-switch");
 const selectMenu = document.querySelector(".select-menu");
+const loader = document.querySelector(".loader");
 
 async function fetchDataAll() {
+  loader.style.display = "block";
   const response = await fetch("https://restcountries.com/v3.1/all");
   const data = await response.json();
+  loader.style.display = "none";
   return data;
 }
 
@@ -26,10 +29,12 @@ async function fetchRegionData(region) {
   if (region.value === "all") {
     displayData();
   } else {
+    loader.style.display = "block";
     const response = await fetch(
       `https://restcountries.com/v3.1/region/${region.value}`
     );
     const data = await response.json();
+    loader.style.display = "none";
     data.forEach((cardData) => {
       displayCards(cardData);
     });
@@ -43,11 +48,12 @@ async function fetchSearchData(event) {
     if (event.target.value == "") {
       displayData();
     } else {
+      loader.style.display = "block";
       const response = await fetch(
         `https://restcountries.com/v3.1/name/${event.target.value}`
       );
       const data = await response.json();
-      console.log(data);
+      loader.style.display = "none";
       if (data.status != 404) {
         containers.innerHTML = "";
         data.forEach((cardData) => {
@@ -73,17 +79,27 @@ function displayCards(cardData) {
 
 document.addEventListener("click", (e) => {
   let container = e.target.closest(".container");
+  let liTag = e.target.closest(".country-list")
   if (container) {
     let countryName = container.children[1].children[0].innerText;
     getDetailPageData(countryName);
   }
+
+  else if(liTag) {
+    let borderCoutryName = liTag.innerHTML
+    console.log(borderCoutryName)
+    fetchByBorderName(borderCoutryName)
+  }
 });
 
 async function getDetailPageData(countryName) {
+  loader.style.display = "block";
   const detailPageData = await fetchDataAll();
+  loader.style.display = "none";
   detailPageData.forEach((detail) => {
     if (detail.name.common === countryName) {
       showDetailPage(detail);
+      getBorderData(detail);
     }
   });
 }
@@ -129,13 +145,54 @@ function showDetailPage(detail) {
                   ).join(", ")}</p>
               </div>
           </div>
-          <p><span>Border Countries: </p>
+          <p class="border-ct-main"><span>Border Countries:</span><span class ="border-countries"></span> </p>
       </div>
 
   </div>`;
   detailPage.style.display = "flex";
   homePage.style.display = "none";
   detailPage.innerHTML = detailHtml;
+  getBorderData(detail)
+}
+
+async function getBorderData(detail) {
+  let ctName = detail.name.common;
+  let borders;
+  const response = await fetch("./data.json");
+  const resData = await response.json();
+  resData.forEach((ct) => {
+    if (ct.name === ctName) {
+      if (ct.borders) {
+        loader.style.display = "block";
+        borders = ct.borders;
+        console.log(borders);
+        borders.forEach((border) => fetchBorderData(border));
+      }
+    }
+    loader.style.display = "none";
+  });
+}
+
+async function fetchBorderData(border) {
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${border}
+  `);
+  const data = await response.json();
+
+  const country = data[0].name.common;
+  console.log(country);
+  const ct = document.createElement("li");
+  ct.innerHTML = country;
+  ct.classList.add("country-list")
+  const borderCountries = document.querySelector(".border-countries");
+  borderCountries.appendChild(ct);
+}
+
+async function fetchByBorderName(country) {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${country}`
+  );
+  const data = await response.json();
+  showDetailPage(data[0])
 }
 
 function goBack() {
@@ -166,6 +223,8 @@ modeBtn.addEventListener("click", () => {
       .forEach(
         (container) => (container.style.backgroundColor = "hsl(209, 23%, 22%)")
       );
+
+   
   } else if (currDarkMode) {
     modeBtn.classList.remove("dark");
     modeBtn.classList.add("light");
