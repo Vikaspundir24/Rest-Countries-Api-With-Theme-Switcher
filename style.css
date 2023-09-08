@@ -38,12 +38,14 @@
     padding: 1rem 10%;
     font-size: 14px;
     height: 100%;
+    min-height: 100vh;
 }
 .home-page img{
     border-radius: 12px 12px 0px 0px;
 }
 .detail-page{
     display: none;
+    height: 100%;
 }
 .search-filter{
     display: flex;
@@ -95,6 +97,7 @@
     align-items: center;
     flex-wrap:wrap;
     margin-top: 2rem;
+    height: 100%;
 }
 
 .container{
@@ -132,7 +135,7 @@
 
 
 .detail-page{
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: hsl(0, 0%, 98%);
     padding: 1rem 10%;
@@ -204,4 +207,62 @@ span{
     box-shadow: 1px 1px 2px 1px rgb(0, 0, 0,0.2);
     padding: 2px 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:767px){
+    .detail-page{
+        height: 100%;
+    }
+    .navbar h1{
+        font-size: 14px;
+    }
+    .navbar h3{
+        font-size: 14px;
+    }
+    .search-filter{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input{
+        width:auto;
+    }
+
+    .search-menu{
+        padding: 0.5rem 1rem;
+    }
+    .container{
+        height: 20rem;
+    }
+    .details{
+        padding: 0.1rem 1rem;
+        font-size: 12px;
+    }
+    .country-details{
+        flex-direction: column;
+        gap: 10px;
+        font-size: 12px;
+    }
+    .left-flag img{
+        width: auto;
+    }
+    .small-details{
+        flex-direction: column;
+        gap: 1rem;
+        
+    }
+    .back-btn{
+        font-size: 12px;
+    }
+    .country-details{
+        align-items: flex-start;
+    }
+    .border-ct-main{
+        flex-direction: column;
+        gap: 20px;
+       
+    }
+    .border-countries{
+        margin-left: 0px;
+    }
 }

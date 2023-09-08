@@ -79,16 +79,14 @@ function displayCards(cardData) {
 
 document.addEventListener("click", (e) => {
   let container = e.target.closest(".container");
-  let liTag = e.target.closest(".country-list")
+  let liTag = e.target.closest(".country-list");
   if (container) {
     let countryName = container.children[1].children[0].innerText;
     getDetailPageData(countryName);
-  }
-
-  else if(liTag) {
-    let borderCoutryName = liTag.innerHTML
-    console.log(borderCoutryName)
-    fetchByBorderName(borderCoutryName)
+  } else if (liTag) {
+    let borderCoutryName = liTag.innerHTML;
+    console.log(borderCoutryName);
+    fetchByBorderName(borderCoutryName);
   }
 });
 
@@ -152,7 +150,7 @@ function showDetailPage(detail) {
   detailPage.style.display = "flex";
   homePage.style.display = "none";
   detailPage.innerHTML = detailHtml;
-  getBorderData(detail)
+  getBorderData(detail);
 }
 
 async function getBorderData(detail) {
@@ -182,7 +180,7 @@ async function fetchBorderData(border) {
   console.log(country);
   const ct = document.createElement("li");
   ct.innerHTML = country;
-  ct.classList.add("country-list")
+  ct.classList.add("country-list");
   const borderCountries = document.querySelector(".border-countries");
   borderCountries.appendChild(ct);
 }
@@ -192,7 +190,7 @@ async function fetchByBorderName(country) {
     `https://restcountries.com/v3.1/name/${country}`
   );
   const data = await response.json();
-  showDetailPage(data[0])
+  showDetailPage(data[0]);
 }
 
 function goBack() {
@@ -223,8 +221,6 @@ modeBtn.addEventListener("click", () => {
       .forEach(
         (container) => (container.style.backgroundColor = "hsl(209, 23%, 22%)")
       );
-
-   
   } else if (currDarkMode) {
     modeBtn.classList.remove("dark");
     modeBtn.classList.add("light");
