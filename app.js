@@ -28,6 +28,7 @@ async function fetchRegionData(region) {
   containers.innerHTML = "";
   if (region.value === "all") {
     displayData();
+    changeM();
   } else {
     loader.style.display = "block";
     const response = await fetch(
@@ -37,6 +38,7 @@ async function fetchRegionData(region) {
     loader.style.display = "none";
     data.forEach((cardData) => {
       displayCards(cardData);
+      changeM();
     });
   }
 }
@@ -75,6 +77,7 @@ function displayCards(cardData) {
     </div>
   </div>`;
   containers.insertAdjacentHTML("beforeend", html);
+  changeM();
 }
 
 document.addEventListener("click", (e) => {
@@ -183,6 +186,7 @@ async function fetchBorderData(border) {
   ct.classList.add("country-list");
   const borderCountries = document.querySelector(".border-countries");
   borderCountries.appendChild(ct);
+  changeM();
 }
 
 async function fetchByBorderName(country) {
@@ -201,6 +205,7 @@ function goBack() {
 /* DARK AND LIGHT MODE TOGGLE */
 
 modeBtn.addEventListener("click", () => {
+  changeM();
   let currLightMode = modeBtn.classList.contains("light");
   let currDarkMode = modeBtn.classList.contains("dark");
   if (currLightMode) {
@@ -238,5 +243,26 @@ modeBtn.addEventListener("click", () => {
       .forEach(
         (container) => (container.style.backgroundColor = " hsl(0, 0%, 100%)")
       );
+    document
+      .querySelectorAll(".country-list")
+      .forEach((list) => list.classList.remove("dark-mode-bg"));
   }
 });
+const changeM = () => {
+  let currLightMode = modeBtn.classList.contains("light");
+  if (!currLightMode) {
+    document
+      .querySelectorAll(".container")
+      .forEach(
+        (container) => (container.style.backgroundColor = "hsl(209, 23%, 22%)")
+      );
+    document
+      .querySelectorAll(".country-list")
+      .forEach((list) => list.classList.add("dark-mode-bg"));
+    console.log("hey");
+  } else {
+    document
+      .querySelectorAll(".country-list")
+      .forEach((list) => list.classList.remove("dark-mode-bg"));
+  }
+};
